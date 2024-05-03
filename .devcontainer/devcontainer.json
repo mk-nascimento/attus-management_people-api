@@ -1,0 +1,39 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+{
+    "name": "Java - Attus Teste Técnico",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "management",
+    "runServices": ["database"],
+    "forwardPorts": ["5000:5432"],
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils": { "configureZshAsDefaultShell": true },
+        "ghcr.io/devcontainers/features/java:1": { "version": "21", "installMaven": "true" },
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dotenv.dotenv-vscode",
+                "eamodio.gitlens",
+                "editorconfig.editorconfig",
+                "ms-vscode-remote.vscode-remote-extensionpack",
+                "mtxr.sqltools",
+                "oderwat.indent-rainbow",
+                "redhat.vscode-yaml",
+                "sonarsource.sonarlint-vscode",
+                "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+                "streetsidesoftware.code-spell-checker",
+                "visualstudioexptteam.vscodeintellicode"
+            ],
+            "settings": {
+                "cSpell.language": "en,pt-BR",
+                "extensions.ignoreRecommendations": true,
+                "java.codeGeneration.generateComments": true,
+                "java.edit.smartSemicolonDetection.enabled": true,
+                "git.openRepositoryInParentFolders": "always"
+            }
+        }
+    },
+    "onCreateCommand": "sed -i 's/^plugins=(/plugins=(git-prompt gitfast command-not-found /' ~/.zshrc",
+    "workspaceFolder": "/workspaces"
+}
