@@ -23,7 +23,8 @@
                 "sonarsource.sonarlint-vscode",
                 "streetsidesoftware.code-spell-checker-portuguese-brazilian",
                 "streetsidesoftware.code-spell-checker",
-                "visualstudioexptteam.vscodeintellicode"
+                "visualstudioexptteam.vscodeintellicode",
+                "vmware.vscode-boot-dev-pack"
             ],
             "settings": {
                 "cSpell.language": "en,pt-BR",
