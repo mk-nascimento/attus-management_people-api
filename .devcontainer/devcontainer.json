@@ -4,7 +4,7 @@
     "dockerComposeFile": "docker-compose.yml",
     "service": "management",
     "runServices": ["database"],
-    "forwardPorts": ["5000:5432"],
+    "forwardPorts": [5432],
     "features": {
         "ghcr.io/devcontainers/features/common-utils": { "configureZshAsDefaultShell": true },
         "ghcr.io/devcontainers/features/java:1": { "version": "21", "installMaven": "true" },
@@ -24,10 +24,12 @@
                 "streetsidesoftware.code-spell-checker-portuguese-brazilian",
                 "streetsidesoftware.code-spell-checker",
                 "visualstudioexptteam.vscodeintellicode",
-                "vmware.vscode-boot-dev-pack"
+                "vmware.vscode-boot-dev-pack",
+                "mtxr.sqltools-driver-pg"
             ],
             "settings": {
                 "cSpell.language": "en,pt-BR",
+                "cSpell.userWords": ["attus", "nosonar"],
                 "extensions.ignoreRecommendations": true,
                 "java.codeGeneration.generateComments": true,
                 "java.edit.smartSemicolonDetection.enabled": true,
