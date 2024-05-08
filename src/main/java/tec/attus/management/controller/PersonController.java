@@ -20,7 +20,7 @@ import tec.attus.management.service.PersonService;
 import tec.attus.management.utils.Utils;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api")
 public class PersonController {
     private PersonService service;
 
@@ -28,47 +28,47 @@ public class PersonController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/person")
     public ResponseEntity<Person> create(@RequestBody Person entity) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(entity));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/person/{id}")
     public ResponseEntity<Object> readUnique(@PathVariable Long id) {
         Optional<Person> instance = service.readUnique(id);
 
         if (Boolean.FALSE.equals(instance.isPresent()))
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ErrorResponse(String.format("No Person founded for: %s", id)));
+                    new ErrorResponse(HttpStatus.NOT_FOUND.getReasonPhrase()));
 
         return ResponseEntity.ok().body(instance.get());
     }
 
-    @GetMapping()
+    @GetMapping("/person")
     public ResponseEntity<List<Person>> read() {
         return ResponseEntity.ok().body(service.read());
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/person/{id}")
     public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody Person entity) {
         Optional<Person> instance = service.readUnique(id);
 
         if (Boolean.FALSE.equals(instance.isPresent()))
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ErrorResponse(String.format("Person #%s not found", id)));
+                    new ErrorResponse(HttpStatus.NOT_FOUND.getReasonPhrase()));
 
         Utils.copyNonNull(entity, instance.get());
 
         return ResponseEntity.ok().body(service.create(instance.get()));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/person/{id}")
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         Optional<Person> instance = service.readUnique(id);
 
         if (Boolean.FALSE.equals(instance.isPresent()))
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ErrorResponse(String.format("Person #%s not found", id)));
+                    new ErrorResponse(HttpStatus.NOT_FOUND.getReasonPhrase()));
 
         service.delete(id);
         return ResponseEntity.noContent().build();
