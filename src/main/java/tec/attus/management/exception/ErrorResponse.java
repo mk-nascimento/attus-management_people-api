@@ -1,12 +1,12 @@
 package tec.attus.management.exception;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-@Data
+@Getter
+@EqualsAndHashCode()
+@AllArgsConstructor
 public class ErrorResponse {
     private String message;
-
-    public ErrorResponse(String message) {
-        this.message = message;
-    }
 }

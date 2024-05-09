@@ -13,9 +13,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity(name = "mng_address")
 public class Address {
     @Id
@@ -25,8 +27,8 @@ public class Address {
     @Column(length = 128, nullable = false)
     private String street;
 
-    @Column(length = 10, nullable = false)
-    private String postal_code; // NOSONAR
+    @Column(name = "postal_code", length = 10, nullable = false)
+    private String postalCode;
 
     @Column(length = 8, nullable = false)
     private String number;

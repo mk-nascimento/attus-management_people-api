@@ -13,21 +13,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity(name = "mng_person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(length = 64, nullable = false)
-    private String full_name; // NOSONAR
+    @Column(name = "full_name", length = 64, nullable = false)
+    private String fullName;
 
-    @Column(nullable = false)
+    @Column(name = "birth_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birth_date; // NOSONAR
+    private LocalDate birthDate;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
